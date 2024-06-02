@@ -63,24 +63,23 @@ function App() {
   const playSound = (id) => {
     const audio = document.getElementById(id);
     const display = document.getElementById("display");
-    const match = audio.src.match(/\/([^\/]+)\.mp3$/);
-
-    let extractedName;
-
-    if (match) {
-      extractedName = match[1];
-      console.log(extractedName); // This will log "Kick_n_Hat"
-      
-    } else {
-      extractedName = "No match found";
-      console.log(extractedName); // This will log "No match found"
-      console.log(id); // This will log "Kick_n_Hat"
-    }
 
     console.log(audio);
     if (audio) {
       audio.play();
-      display.innerText = extractedName
+      const match = audio.src.match(/\/([^\/]+)\.mp3$/);
+
+      let extractedName;
+
+      if (match) {
+        extractedName = match[1];
+        console.log(extractedName); // This will log "Kick_n_Hat"
+      } else {
+        extractedName = "No match found";
+        console.log(extractedName); // This will log "No match found"
+        console.log(id); // This will log "Kick_n_Hat"
+      }
+      display.innerText = extractedName;
     }
   };
 
