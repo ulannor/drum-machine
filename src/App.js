@@ -10,7 +10,6 @@ function App() {
     };
 
     document.addEventListener("keydown", handleKeyDown);
-
   }, []);
 
   const drumPads = [
@@ -63,9 +62,25 @@ function App() {
 
   const playSound = (id) => {
     const audio = document.getElementById(id);
-    console.log(audio)
+    const display = document.getElementById("display");
+    const match = audio.src.match(/\/([^\/]+)\.mp3$/);
+
+    let extractedName;
+
+    if (match) {
+      extractedName = match[1];
+      console.log(extractedName); // This will log "Kick_n_Hat"
+      
+    } else {
+      extractedName = "No match found";
+      console.log(extractedName); // This will log "No match found"
+      console.log(id); // This will log "Kick_n_Hat"
+    }
+
+    console.log(audio);
     if (audio) {
-            audio.play();
+      audio.play();
+      display.innerText = extractedName
     }
   };
 
